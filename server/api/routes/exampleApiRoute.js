@@ -3,6 +3,7 @@ const router = require('express').Router();
 // matches GET requests to /api/example/
 router.get('/', /*async*/ (req, res, next) => {
   /* etc */
+  res.json('Hello from the back-end!')
 });
 
 // matches POST requests to /api/example/
