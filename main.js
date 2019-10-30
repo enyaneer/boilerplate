@@ -7,5 +7,5 @@ const PORT = process.env.PORT || 3000; // this can be very useful if you deploy 
 
 app.listen(PORT, function () {
   console.log(`Hello, I'll be your server for the evening`)
-  console.log(`We recommend listening in on some fine port ${PORT}`)
+  console.log(`I recommend listening in on some fine port ${PORT}`)
 });
