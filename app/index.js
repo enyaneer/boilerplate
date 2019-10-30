@@ -13,7 +13,7 @@ ReactDOM.render(
     {/* rest of your app goes here between the Provider tags! */}
     {/*consider making a root.js component with React-Router in it to put here as well*/}
     <div>
-      Hello, world!
+      Hello world, you made it!
     </div>
   </Provider>,
   document.getElementById('app') // make sure this is the same as the id of the div in your index.html
