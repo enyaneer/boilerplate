@@ -1,14 +1,21 @@
 //react-DOM-Render goes here
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux'
+import store from './store'
 
 
 
 
 
 ReactDOM.render(
-  <div>
-    Hello, world!
-  </div>,
+  <Provider store={store}>
+    {/* rest of your app goes here between the Provider tags! */}
+    {/*consider making a root.js component with React-Router in it to put here as well*/}
+    <div>
+      Hello, world!
+    </div>
+  </Provider>,
   document.getElementById('app') // make sure this is the same as the id of the div in your index.html
-);
+
+  );
