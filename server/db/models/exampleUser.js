@@ -1,21 +1,18 @@
 const Sequelize = require('sequelize');
 const db = require('../database');
+const crypto = require('crypto')
 const _ = require('lodash')
 
 
 const exampleUser = db.define('user', {
   username: {
     type: Sequelize.STRING,
-    allowNull: false,
-    notEmpty: true
+    allowNull: false
   },
-
   email: {
     type: Sequelize.STRING,
-    isEmail: true,
     unique: true
   },
-
   password: {
     type: Sequelize.STRING
   },

@@ -25,7 +25,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../public')));
 
 // Any routes or other various middlewares should go here!
-app.use('/api', require('./api'))
 
 app.use(session({
   secret: process.env.SESSION_SECRET || 'a wildly insecure secret',
@@ -34,8 +33,11 @@ app.use(session({
   saveUninitialized: false
 }));
 
-// ONLY IF USING PASSPORT//////////
-app.use(passport.initialize());
+
+app.use(passport.initialize());    //only if have users to create/login/logout
+
+app.use('/api', require('./api')) //has to go here otherwise it doesn't go through passport
+
 app.use(passport.session());
 
 passport.serializeUser((user, done) => {
@@ -51,7 +53,8 @@ passport.deserializeUser((id, done) => {
     .then(user => done(null, user))
     .catch(done);
 });
-////////////////////////////////////
+
+
 
 
 // Make sure this is right at the end of your server logic!
