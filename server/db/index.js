@@ -1,6 +1,7 @@
 const db = require('./database')
 //require in models as well
 const exampleModel = require('./models/example')
+const exampleUser = require('./models/exampleUser')
 
 // The purpose of this module is to bring your Sequelize instance (`db`) together
 // with your models (which you should define in separate modules in this directory).
@@ -15,8 +16,11 @@ const exampleModel = require('./models/example')
 //
 // Puppy.belongsTo(Owner)
 
+exampleUser.hasMany(exampleModel)
+exampleModel.belongsTo(exampleUser)
+
 
 module.exports = {
   // Include your models in this exports object as well!
-  db, exampleModel
+  db, exampleModel, exampleUser
 }

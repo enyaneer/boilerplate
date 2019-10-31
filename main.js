@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 const app = require('./server')
 const {db} = require('./server/db')
 //can also require in db here

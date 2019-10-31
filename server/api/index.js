@@ -1,13 +1,22 @@
 const router = require('express').Router();
 
+
 //require apiRoute files here
 const apiRouteName = require('./routes/exampleApiRoute')
+const loginApiRouteName = require('./routes/exampleLoginRoute')
+const createUserRouteName = require('./routes/exampleCreateUserRoute')
+const logoutUserRoutename = require('./routes/exampleLogoutRoute')
 
 
 //seperate api routes (in routes folder) go here
 router.use('/example', apiRouteName)
+router.use('/login', loginApiRouteName)
+router.use('/signup', createUserRouteName)
+router.use('/logout', logoutUserRoutename)
 
-
+router.get('/me', (req, res, next) => {
+  res.json(req.user);
+}); //might have to be placed somewhere else
 
 //404 error
 router.use((req, res, next) => {

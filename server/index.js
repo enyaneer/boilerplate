@@ -1,9 +1,17 @@
+/* eslint-disable no-console */
 const path = require('path');
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+const session = require('express-session');
+const passport = require('passport')
+const {db} = require('./db');
+const exampleUser = require('./db/models/exampleUser')
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const dbStore = new SequelizeStore({db: db})
 
+dbStore.sync();
 
 
 //logging middleware
@@ -19,6 +27,31 @@ app.use(express.static(path.join(__dirname, '../public')));
 // Any routes or other various middlewares should go here!
 app.use('/api', require('./api'))
 
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'a wildly insecure secret',
+  store: dbStore,
+  resave: false,
+  saveUninitialized: false
+}));
+
+// ONLY IF USING PASSPORT//////////
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser((user, done) => {
+  try {
+    done(null, user.id);
+  } catch (err) {
+    done(err);
+  }
+});
+
+passport.deserializeUser((id, done) => {
+  exampleUser.findById(id) //assuming there is a User model in the db
+    .then(user => done(null, user))
+    .catch(done);
+});
+////////////////////////////////////
 
 
 // Make sure this is right at the end of your server logic!
