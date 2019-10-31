@@ -1,5 +1,6 @@
 const router = require('express').Router();
-
+const passport = require('passport')
+const strategy = require('./routes/oauth')
 
 //require apiRoute files here
 const apiRouteName = require('./routes/exampleApiRoute')
@@ -17,6 +18,18 @@ router.use('/logout', logoutUserRoutename)
 router.get('/me', (req, res, next) => {
   res.json(req.user);
 }); //might have to be placed somewhere else
+
+//google Oauth
+router.get('/auth/google', passport.authenticate('google', {
+  scope: 'email'
+}))
+
+router.get('/auth/google/callback', passport.authenticate('google', {
+  successRedirect: '/',
+  failureRedirect: '/login'
+}));
+
+passport.use(strategy)
 
 //404 error
 router.use((req, res, next) => {

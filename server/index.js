@@ -34,7 +34,7 @@ app.use(session({
 }));
 
 
-app.use(passport.initialize());    //only if have users to create/login/logout
+app.use(passport.initialize());
 
 app.use('/api', require('./api')) //has to go here otherwise it doesn't go through passport
 

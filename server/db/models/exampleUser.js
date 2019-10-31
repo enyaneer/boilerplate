@@ -5,6 +5,9 @@ const _ = require('lodash')
 
 
 const exampleUser = db.define('user', {
+  google_id: {
+    type: Sequelize.STRING
+  },
   username: {
     type: Sequelize.STRING,
     allowNull: false
