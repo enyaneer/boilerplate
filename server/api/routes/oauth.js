@@ -5,7 +5,7 @@ const exampleUser = require('../../db/models/exampleUser')
 const googleConfig = {
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: 'api/auth/google/callback'
+  callbackURL: '/auth/google/callback'
 };
 
 // configure the strategy with our config object, and write the function that passport will invoke after google sends

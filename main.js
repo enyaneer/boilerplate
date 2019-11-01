@@ -1,7 +1,9 @@
 /* eslint-disable no-console */
-if (process.env.NODE_ENV === 'development') {
-  require('./localSecrets'); // this will mutate the process.env object with your secrets.
-}
+// if (process.env.NODE_ENV === 'development') {
+//   require('./localSecrets'); // this will mutate the process.env object with your secrets. Seems to not be working as it should be
+// }
+
+require('./localSecrets')
 const app = require('./server')
 const {db} = require('./server/db')
 
